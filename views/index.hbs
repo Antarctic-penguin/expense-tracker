@@ -1,0 +1,48 @@
+<form action="/record/search" id="search">
+  <select name="category" id="category" class="form-select mb-3" onchange="this.form.submit()" name="category">
+    <option>所有支出</option>
+    {{#each categoryData}}
+    <option value="{{this._id}}" {{#helper1 this._id ../record.category._id}} selected{{/helper1}}>
+      {{this.name}}
+    </option>
+    {{/each}}
+  </select>
+</form>
+
+<div class="d-flex justify-content-around mb-3">
+  <h1>總金額：</h1>
+  <h1>{{totalAmount}}</h1>
+</div>
+<ul class="list-group">
+  {{#each record}}
+  <li class="list-group-item">
+    <div class="row mb-2">
+      <div class="col-auto me-auto d-flex align-items-center">
+        <div class="me-2">
+          <i class="{{this.category.icon}}"></i>
+        </div>
+        <div class="ms-3">
+          <h2 style="display: inline; vertical-align: middle;">
+            {{ this.name }}
+          </h2>
+          <p class="fs-6 mb-1">
+            {{this.date}}
+          </p>
+        </div>
+      </div>
+      <div class="d-flex align-items-center col-auto">
+        <div class="fs-3">{{this.amount}}</div>
+      </div>
+      <div class="col-auto d-flex align-items-center">
+        <a class="btn btn-success me-2 " href="./record/edit/{{ this._id }}">編輯</a>
+        <form action="./record/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+          <button class="btn btn-danger" type="submit">刪除</button>
+        </form>
+      </div>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+<div class="text-center">
+  <a href="/record/new" class="btn btn-primary mt-3 mx-auto">新增支出</a>
+</div>

@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <form action="/record" method="POST">
+        <div class="title mb-4 text-center">
+          <h2 class="ml-4 ">新增支出紀錄</h2>
+          <p class="fs-6">(*項目為必填)</p>
+        </div>
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">名稱*</span>
+          </div>
+          <input type="text" class="form-control" name="name">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">日期*</span>
+          </div>
+          <input type="date" class="form-control" name="date">
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <label for="category" class="input-group-text">類別*</label>
+          </div>
+          <select name="category" id="category" class="form-control">
+            <option selected disabled>請選擇</option>
+            {{#each category}}
+            <option value="{{this.name}}">{{this.name}}
+            </option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">金額*</span>
+          </div>
+          <input type="number" class="form-control" min="0" name="amount">
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary me-2 w-50">新增</button>
+          <a href="/" class="btn btn-primary">返回</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
